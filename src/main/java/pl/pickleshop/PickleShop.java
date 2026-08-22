@@ -1,11 +1,9 @@
 package pl.pickleshop;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -17,12 +15,43 @@ public class PickleShop extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        loadBalances();
+
         getLogger().info("PickleShop zostal wlaczony!");
     }
 
     @Override
     public void onDisable() {
+        saveBalances();
+
         getLogger().info("PickleShop zostal wylaczony!");
+    }
+
+    private void loadBalances() {
+        if (getConfig().getConfigurationSection("balances") == null) {
+            return;
+        }
+
+        for (String uuidString : getConfig().getConfigurationSection("balances").getKeys(false)) {
+            try {
+                UUID uuid = UUID.fromString(uuidString);
+                int balance = getConfig().getInt("balances." + uuidString);
+                balances.put(uuid, balance);
+            } catch (IllegalArgumentException e) {
+                getLogger().warning("Nieprawidlowe UUID w config.yml: " + uuidString);
+            }
+        }
+    }
+
+    private void saveBalances() {
+        getConfig().set("balances", null);
+
+        for (UUID uuid : balances.keySet()) {
+            getConfig().set("balances." + uuid, balances.get(uuid));
+        }
+
+        saveConfig();
     }
 
     @Override
@@ -33,71 +62,82 @@ public class PickleShop extends JavaPlugin {
             return true;
         }
 
-        if (command.getName().equalsIgnoreCase("pickle")) {
+        if (!command.getName().equalsIgnoreCase("pickle")) {
+            return false;
+        }
 
-            if (args.length == 0) {
-                player.sendMessage(ChatColor.GREEN + "=== PickleShop ===");
-                player.sendMessage(ChatColor.YELLOW + "/pickle balance - sprawdz saldo");
-                player.sendMessage(ChatColor.YELLOW + "/pickle give <ilosc> - dodaj pickle");
-                return true;
-            }
+        if (args.length == 0) {
+            player.sendMessage(ChatColor.GREEN + "=== PickleShop ===");
+            player.sendMessage(ChatColor.YELLOW + "/pickle balance - sprawdz saldo");
+            player.sendMessage(ChatColor.YELLOW + "/pickle give <ilosc> - dodaj pickle");
+            return true;
+        }
 
-            if (args[0].equalsIgnoreCase("balance")) {
-                int balance = balances.getOrDefault(player.getUniqueId(), 0);
+        if (args[0].equalsIgnoreCase("balance")) {
 
+            int balance = balances.getOrDefault(player.getUniqueId(), 0);
+
+            player.sendMessage(
+                    ChatColor.GREEN + "Masz "
+                            + ChatColor.YELLOW + balance
+                            + ChatColor.GREEN + " pickle!"
+            );
+
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("give")) {
+
+            if (args.length < 2) {
                 player.sendMessage(
-                        ChatColor.GREEN + "Masz " +
-                        ChatColor.YELLOW + balance +
-                        ChatColor.GREEN + " pickle!"
+                        ChatColor.RED + "Uzycie: /pickle give <ilosc>"
                 );
                 return true;
             }
 
-            if (args[0].equalsIgnoreCase("give")) {
+            try {
+                int amount = Integer.parseInt(args[1]);
 
-                if (args.length < 2) {
-                    player.sendMessage(ChatColor.RED + "Uzycie: /pickle give <ilosc>");
+                if (amount <= 0) {
+                    player.sendMessage(
+                            ChatColor.RED + "Ilosc musi byc wieksza od 0!"
+                    );
                     return true;
                 }
 
-                try {
-                    int amount = Integer.parseInt(args[1]);
+                UUID uuid = player.getUniqueId();
 
-                    if (amount <= 0) {
-                        player.sendMessage(ChatColor.RED + "Ilosc musi byc wieksza od 0!");
-                        return true;
-                    }
+                int oldBalance = balances.getOrDefault(uuid, 0);
+                int newBalance = oldBalance + amount;
 
-                    UUID uuid = player.getUniqueId();
+                balances.put(uuid, newBalance);
 
-                    int oldBalance = balances.getOrDefault(uuid, 0);
-                    int newBalance = oldBalance + amount;
+                player.sendMessage(
+                        ChatColor.GREEN + "Dodano "
+                                + ChatColor.YELLOW + amount
+                                + ChatColor.GREEN + " pickle!"
+                );
 
-                    balances.put(uuid, newBalance);
+                player.sendMessage(
+                        ChatColor.GREEN + "Twoje saldo: "
+                                + ChatColor.YELLOW + newBalance
+                                + ChatColor.GREEN + " pickle."
+                );
 
-                    player.sendMessage(
-                            ChatColor.GREEN + "Dodano " +
-                            ChatColor.YELLOW + amount +
-                            ChatColor.GREEN + " pickle!"
-                    );
+            } catch (NumberFormatException e) {
 
-                    player.sendMessage(
-                            ChatColor.GREEN + "Twoje saldo: " +
-                            ChatColor.YELLOW + newBalance +
-                            ChatColor.GREEN + " pickle."
-                    );
-
-                } catch (NumberFormatException e) {
-                    player.sendMessage(ChatColor.RED + "Podaj prawidlowa liczbe!");
-                }
-
-                return true;
+                player.sendMessage(
+                        ChatColor.RED + "Podaj prawidlowa liczbe!"
+                );
             }
 
-            player.sendMessage(ChatColor.RED + "Nieznana opcja!");
             return true;
         }
 
-        return false;
+        player.sendMessage(
+                ChatColor.RED + "Nieznana opcja!"
+        );
+
+        return true;
     }
 }
