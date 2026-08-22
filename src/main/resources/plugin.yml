@@ -6,11 +6,19 @@ author: PickleShop
 description: Pickle Shop - sklep i bank Sea Pickle
 
 commands:
-  pickle:
-    description: Komenda PickleShop
-    usage: /pickle <balance|give>
-    permission: pickleshop.use
+  sklep:
+    description: Otwiera PickleShop
+    aliases:
+      - shop
+      - pickleshop
 
+  bank:
+    description: Otwiera Pickle Bank
+    aliases:
+      - picklebank
+
+  saldo:
+    description: Pokazuje saldo Pickle Bank
 permissions:
   pickleshop.use:
     description: Pozwala korzystac z PickleShop
