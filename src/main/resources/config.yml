@@ -1,8 +1,5 @@
 balances: {}
 
-
-
-
 settings:
   pickle-per-shulker: 1728
 
@@ -18,57 +15,57 @@ items:
   cobweb:
     name: "&fCobweb"
     material: COBWEB
-    amount: 64
-    price: 2
+    amount: 16
+    price: 2000
     category: pvp
 
   crystal:
     name: "&dEnd Crystal"
     material: END_CRYSTAL
-    amount: 64
-    price: 7
+    amount: 16
+    price: 8000
     category: pvp
 
   anchor:
     name: "&5Respawn Anchor"
     material: RESPAWN_ANCHOR
-    amount: 16
-    price: 3
+    amount: 4
+    price: 3000
     category: pvp
 
   obsidian:
     name: "&5Obsidian"
     material: OBSIDIAN
-    amount: 64
-    price: 3
+    amount: 16
+    price: 2500
     category: pvp
 
   pearl:
     name: "&bEnder Pearl"
     material: ENDER_PEARL
-    amount: 64
-    price: 5
+    amount: 16
+    price: 4000
     category: pvp
 
   totem:
     name: "&eTotem of Undying"
     material: TOTEM_OF_UNDYING
-    amount: 4
-    price: 10
+    amount: 1
+    price: 7500
     category: pvp
 
   tnt:
     name: "&cTNT"
     material: TNT
-    amount: 64
-    price: 4
+    amount: 16
+    price: 5000
     category: pvp
 
   arrows:
     name: "&fArrows"
     material: ARROW
-    amount: 64
-    price: 1
+    amount: 16
+    price: 500
     category: pvp
 
   # =========================
@@ -79,21 +76,21 @@ items:
     name: "&6Golden Apple"
     material: GOLDEN_APPLE
     amount: 16
-    price: 2
+    price: 5000
     category: food
 
   enchanted_golden_apple:
     name: "&dEnchanted Golden Apple"
     material: ENCHANTED_GOLDEN_APPLE
-    amount: 4
-    price: 12
+    amount: 1
+    price: 12500
     category: food
 
   golden_carrot:
     name: "&6Golden Carrot"
     material: GOLDEN_CARROT
-    amount: 64
-    price: 2
+    amount: 16
+    price: 1500
     category: food
 
   # =========================
@@ -104,42 +101,42 @@ items:
     name: "&bDiamond"
     material: DIAMOND
     amount: 16
-    price: 4
+    price: 5000
     category: resources
 
   netherite_ingot:
     name: "&8Netherite Ingot"
     material: NETHERITE_INGOT
-    amount: 16
-    price: 50
+    amount: 1
+    price: 15000
     category: resources
 
   nether_star:
     name: "&fNether Star"
     material: NETHER_STAR
     amount: 1
-    price: 30
+    price: 30000
     category: resources
 
   beacon:
     name: "&bBeacon"
     material: BEACON
     amount: 1
-    price: 60
+    price: 60000
     category: resources
 
   shulker_shell:
     name: "&dShulker Shell"
     material: SHULKER_SHELL
     amount: 8
-    price: 4
+    price: 12000
     category: resources
 
   blaze_rod:
     name: "&6Blaze Rod"
     material: BLAZE_ROD
     amount: 16
-    price: 3
+    price: 4000
     category: resources
 
   # =========================
@@ -149,36 +146,36 @@ items:
   ender_chest:
     name: "&5Ender Chest"
     material: ENDER_CHEST
-    amount: 4
-    price: 8
+    amount: 1
+    price: 7500
     category: utility
 
   anvil:
     name: "&7Anvil"
     material: ANVIL
     amount: 1
-    price: 5
+    price: 5000
     category: utility
 
   experience:
     name: "&aExperience Bottle"
     material: EXPERIENCE_BOTTLE
-    amount: 64
-    price: 6
+    amount: 16
+    price: 3000
     category: utility
 
   fireworks:
     name: "&fFirework Rockets"
     material: FIREWORK_ROCKET
-    amount: 64
-    price: 4
+    amount: 16
+    price: 2000
     category: utility
 
   phantom_membrane:
     name: "&fPhantom Membrane"
     material: PHANTOM_MEMBRANE
     amount: 16
-    price: 8
+    price: 6000
     category: utility
 
   # =========================
@@ -189,7 +186,7 @@ items:
     name: "&bDiamond Sword"
     material: DIAMOND_SWORD
     amount: 1
-    price: 15
+    price: 15000
     category: weapons
     enchants:
       sharpness: 5
@@ -201,7 +198,7 @@ items:
     name: "&8Netherite Sword"
     material: NETHERITE_SWORD
     amount: 1
-    price: 50
+    price: 40000
     category: weapons
     enchants:
       sharpness: 7
@@ -214,7 +211,7 @@ items:
     name: "&bTrident"
     material: TRIDENT
     amount: 1
-    price: 25
+    price: 25000
     category: weapons
     enchants:
       impaling: 5
@@ -229,7 +226,7 @@ items:
     name: "&bDiamond Pickaxe"
     material: DIAMOND_PICKAXE
     amount: 1
-    price: 12
+    price: 12000
     category: tools
     enchants:
       efficiency: 5
@@ -240,7 +237,7 @@ items:
     name: "&8Netherite Pickaxe"
     material: NETHERITE_PICKAXE
     amount: 1
-    price: 35
+    price: 35000
     category: tools
     enchants:
       efficiency: 7
@@ -256,7 +253,7 @@ items:
     name: "&4&lGOD SWORD"
     material: NETHERITE_SWORD
     amount: 1
-    price: 250
+    price: 250000
     category: endgame
     enchants:
       sharpness: 10
@@ -269,7 +266,7 @@ items:
     name: "&b&lGOD PICKAXE"
     material: NETHERITE_PICKAXE
     amount: 1
-    price: 300
+    price: 300000
     category: endgame
     enchants:
       efficiency: 10
@@ -281,7 +278,7 @@ items:
     name: "&c&lGOD AXE"
     material: NETHERITE_AXE
     amount: 1
-    price: 250
+    price: 250000
     category: endgame
     enchants:
       sharpness: 10
@@ -293,7 +290,7 @@ items:
     name: "&6&lGOD BOW"
     material: BOW
     amount: 1
-    price: 200
+    price: 225000
     category: endgame
     enchants:
       power: 10
@@ -306,7 +303,7 @@ items:
     name: "&b&lGOD TRIDENT"
     material: TRIDENT
     amount: 1
-    price: 250
+    price: 275000
     category: endgame
     enchants:
       impaling: 10
@@ -323,7 +320,7 @@ items:
     name: "&6&lGOD HELMET"
     material: NETHERITE_HELMET
     amount: 1
-    price: 300
+    price: 250000
     category: endgame
     enchants:
       protection: 10
@@ -337,7 +334,7 @@ items:
     name: "&c&lGOD CHESTPLATE"
     material: NETHERITE_CHESTPLATE
     amount: 1
-    price: 400
+    price: 350000
     category: endgame
     enchants:
       protection: 10
@@ -349,7 +346,7 @@ items:
     name: "&5&lGOD LEGGINGS"
     material: NETHERITE_LEGGINGS
     amount: 1
-    price: 350
+    price: 300000
     category: endgame
     enchants:
       protection: 10
@@ -361,7 +358,7 @@ items:
     name: "&e&lGOD BOOTS"
     material: NETHERITE_BOOTS
     amount: 1
-    price: 350
+    price: 275000
     category: endgame
     enchants:
       protection: 10
@@ -380,7 +377,7 @@ items:
     name: "&dElytra"
     material: ELYTRA
     amount: 1
-    price: 100
+    price: 100000
     category: endgame
     enchants:
       unbreaking: 5
@@ -390,7 +387,7 @@ items:
     name: "&d&lGOD ELYTRA"
     material: ELYTRA
     amount: 1
-    price: 500
+    price: 500000
     category: endgame
     enchants:
       unbreaking: 10
@@ -404,14 +401,14 @@ items:
     name: "&5Dragon Head"
     material: DRAGON_HEAD
     amount: 1
-    price: 40
+    price: 50000
     category: endgame
 
   dragon_breath:
     name: "&dDragon Breath"
     material: DRAGON_BREATH
     amount: 16
-    price: 15
+    price: 15000
     category: endgame
 
   # =========================
@@ -422,7 +419,7 @@ items:
     name: "&4&lULTIMATE SWORD"
     material: NETHERITE_SWORD
     amount: 1
-    price: 1000
+    price: 1000000
     category: endgame
     enchants:
       sharpness: 20
@@ -437,7 +434,7 @@ items:
     name: "&b&lULTIMATE PICKAXE"
     material: NETHERITE_PICKAXE
     amount: 1
-    price: 1000
+    price: 1000000
     category: endgame
     enchants:
       efficiency: 20
@@ -449,7 +446,7 @@ items:
     name: "&d&lULTIMATE ELYTRA"
     material: ELYTRA
     amount: 1
-    price: 1500
+    price: 1500000
     category: endgame
     enchants:
       unbreaking: 20
