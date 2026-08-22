@@ -1,1 +1,456 @@
 balances: {}
+
+
+
+
+settings:
+  pickle-per-shulker: 1728
+
+messages:
+  prefix: "&2&lPICKLE &a&lSHOP &8» "
+
+items:
+
+  # =========================
+  # PvP
+  # =========================
+
+  cobweb:
+    name: "&fCobweb"
+    material: COBWEB
+    amount: 64
+    price: 2
+    category: pvp
+
+  crystal:
+    name: "&dEnd Crystal"
+    material: END_CRYSTAL
+    amount: 64
+    price: 7
+    category: pvp
+
+  anchor:
+    name: "&5Respawn Anchor"
+    material: RESPAWN_ANCHOR
+    amount: 16
+    price: 3
+    category: pvp
+
+  obsidian:
+    name: "&5Obsidian"
+    material: OBSIDIAN
+    amount: 64
+    price: 3
+    category: pvp
+
+  pearl:
+    name: "&bEnder Pearl"
+    material: ENDER_PEARL
+    amount: 64
+    price: 5
+    category: pvp
+
+  totem:
+    name: "&eTotem of Undying"
+    material: TOTEM_OF_UNDYING
+    amount: 4
+    price: 10
+    category: pvp
+
+  tnt:
+    name: "&cTNT"
+    material: TNT
+    amount: 64
+    price: 4
+    category: pvp
+
+  arrows:
+    name: "&fArrows"
+    material: ARROW
+    amount: 64
+    price: 1
+    category: pvp
+
+  # =========================
+  # Jedzenie
+  # =========================
+
+  golden_apple:
+    name: "&6Golden Apple"
+    material: GOLDEN_APPLE
+    amount: 16
+    price: 2
+    category: food
+
+  enchanted_golden_apple:
+    name: "&dEnchanted Golden Apple"
+    material: ENCHANTED_GOLDEN_APPLE
+    amount: 4
+    price: 12
+    category: food
+
+  golden_carrot:
+    name: "&6Golden Carrot"
+    material: GOLDEN_CARROT
+    amount: 64
+    price: 2
+    category: food
+
+  # =========================
+  # Surowce
+  # =========================
+
+  diamond:
+    name: "&bDiamond"
+    material: DIAMOND
+    amount: 16
+    price: 4
+    category: resources
+
+  netherite_ingot:
+    name: "&8Netherite Ingot"
+    material: NETHERITE_INGOT
+    amount: 16
+    price: 50
+    category: resources
+
+  nether_star:
+    name: "&fNether Star"
+    material: NETHER_STAR
+    amount: 1
+    price: 30
+    category: resources
+
+  beacon:
+    name: "&bBeacon"
+    material: BEACON
+    amount: 1
+    price: 60
+    category: resources
+
+  shulker_shell:
+    name: "&dShulker Shell"
+    material: SHULKER_SHELL
+    amount: 8
+    price: 4
+    category: resources
+
+  blaze_rod:
+    name: "&6Blaze Rod"
+    material: BLAZE_ROD
+    amount: 16
+    price: 3
+    category: resources
+
+  # =========================
+  # Utility
+  # =========================
+
+  ender_chest:
+    name: "&5Ender Chest"
+    material: ENDER_CHEST
+    amount: 4
+    price: 8
+    category: utility
+
+  anvil:
+    name: "&7Anvil"
+    material: ANVIL
+    amount: 1
+    price: 5
+    category: utility
+
+  experience:
+    name: "&aExperience Bottle"
+    material: EXPERIENCE_BOTTLE
+    amount: 64
+    price: 6
+    category: utility
+
+  fireworks:
+    name: "&fFirework Rockets"
+    material: FIREWORK_ROCKET
+    amount: 64
+    price: 4
+    category: utility
+
+  phantom_membrane:
+    name: "&fPhantom Membrane"
+    material: PHANTOM_MEMBRANE
+    amount: 16
+    price: 8
+    category: utility
+
+  # =========================
+  # Bronie
+  # =========================
+
+  diamond_sword:
+    name: "&bDiamond Sword"
+    material: DIAMOND_SWORD
+    amount: 1
+    price: 15
+    category: weapons
+    enchants:
+      sharpness: 5
+      looting: 3
+      sweeping_edge: 3
+      unbreaking: 3
+
+  netherite_sword:
+    name: "&8Netherite Sword"
+    material: NETHERITE_SWORD
+    amount: 1
+    price: 50
+    category: weapons
+    enchants:
+      sharpness: 7
+      looting: 4
+      sweeping_edge: 4
+      unbreaking: 5
+      mending: 1
+
+  trident:
+    name: "&bTrident"
+    material: TRIDENT
+    amount: 1
+    price: 25
+    category: weapons
+    enchants:
+      impaling: 5
+      loyalty: 3
+      unbreaking: 3
+
+  # =========================
+  # Narzedzia
+  # =========================
+
+  diamond_pickaxe:
+    name: "&bDiamond Pickaxe"
+    material: DIAMOND_PICKAXE
+    amount: 1
+    price: 12
+    category: tools
+    enchants:
+      efficiency: 5
+      fortune: 3
+      unbreaking: 3
+
+  netherite_pickaxe:
+    name: "&8Netherite Pickaxe"
+    material: NETHERITE_PICKAXE
+    amount: 1
+    price: 35
+    category: tools
+    enchants:
+      efficiency: 7
+      fortune: 4
+      unbreaking: 5
+      mending: 1
+
+  # =========================
+  # OP / ENDGAME
+  # =========================
+
+  god_sword:
+    name: "&4&lGOD SWORD"
+    material: NETHERITE_SWORD
+    amount: 1
+    price: 250
+    category: endgame
+    enchants:
+      sharpness: 10
+      looting: 5
+      sweeping_edge: 5
+      unbreaking: 10
+      mending: 1
+
+  god_pickaxe:
+    name: "&b&lGOD PICKAXE"
+    material: NETHERITE_PICKAXE
+    amount: 1
+    price: 300
+    category: endgame
+    enchants:
+      efficiency: 10
+      fortune: 5
+      unbreaking: 10
+      mending: 1
+
+  god_axe:
+    name: "&c&lGOD AXE"
+    material: NETHERITE_AXE
+    amount: 1
+    price: 250
+    category: endgame
+    enchants:
+      sharpness: 10
+      efficiency: 10
+      unbreaking: 10
+      mending: 1
+
+  god_bow:
+    name: "&6&lGOD BOW"
+    material: BOW
+    amount: 1
+    price: 200
+    category: endgame
+    enchants:
+      power: 10
+      punch: 5
+      flame: 1
+      infinity: 1
+      unbreaking: 10
+
+  god_trident:
+    name: "&b&lGOD TRIDENT"
+    material: TRIDENT
+    amount: 1
+    price: 250
+    category: endgame
+    enchants:
+      impaling: 10
+      loyalty: 5
+      channeling: 1
+      unbreaking: 10
+      mending: 1
+
+  # =========================
+  # GOD ARMOR
+  # =========================
+
+  god_helmet:
+    name: "&6&lGOD HELMET"
+    material: NETHERITE_HELMET
+    amount: 1
+    price: 300
+    category: endgame
+    enchants:
+      protection: 10
+      respiration: 5
+      aqua_affinity: 1
+      thorns: 5
+      unbreaking: 10
+      mending: 1
+
+  god_chestplate:
+    name: "&c&lGOD CHESTPLATE"
+    material: NETHERITE_CHESTPLATE
+    amount: 1
+    price: 400
+    category: endgame
+    enchants:
+      protection: 10
+      thorns: 5
+      unbreaking: 10
+      mending: 1
+
+  god_leggings:
+    name: "&5&lGOD LEGGINGS"
+    material: NETHERITE_LEGGINGS
+    amount: 1
+    price: 350
+    category: endgame
+    enchants:
+      protection: 10
+      thorns: 5
+      unbreaking: 10
+      mending: 1
+
+  god_boots:
+    name: "&e&lGOD BOOTS"
+    material: NETHERITE_BOOTS
+    amount: 1
+    price: 350
+    category: endgame
+    enchants:
+      protection: 10
+      feather_falling: 10
+      depth_strider: 5
+      soul_speed: 5
+      thorns: 5
+      unbreaking: 10
+      mending: 1
+
+  # =========================
+  # ELYTRA
+  # =========================
+
+  elytra:
+    name: "&dElytra"
+    material: ELYTRA
+    amount: 1
+    price: 100
+    category: endgame
+    enchants:
+      unbreaking: 5
+      mending: 1
+
+  god_elytra:
+    name: "&d&lGOD ELYTRA"
+    material: ELYTRA
+    amount: 1
+    price: 500
+    category: endgame
+    enchants:
+      unbreaking: 10
+      mending: 1
+
+  # =========================
+  # RZADKIE
+  # =========================
+
+  dragon_head:
+    name: "&5Dragon Head"
+    material: DRAGON_HEAD
+    amount: 1
+    price: 40
+    category: endgame
+
+  dragon_breath:
+    name: "&dDragon Breath"
+    material: DRAGON_BREATH
+    amount: 16
+    price: 15
+    category: endgame
+
+  # =========================
+  # SUPER ENDGAME
+  # =========================
+
+  ultimate_sword:
+    name: "&4&lULTIMATE SWORD"
+    material: NETHERITE_SWORD
+    amount: 1
+    price: 1000
+    category: endgame
+    enchants:
+      sharpness: 20
+      looting: 10
+      sweeping_edge: 10
+      fire_aspect: 5
+      knockback: 3
+      unbreaking: 20
+      mending: 1
+
+  ultimate_pickaxe:
+    name: "&b&lULTIMATE PICKAXE"
+    material: NETHERITE_PICKAXE
+    amount: 1
+    price: 1000
+    category: endgame
+    enchants:
+      efficiency: 20
+      fortune: 10
+      unbreaking: 20
+      mending: 1
+
+  ultimate_elytra:
+    name: "&d&lULTIMATE ELYTRA"
+    material: ELYTRA
+    amount: 1
+    price: 1500
+    category: endgame
+    enchants:
+      unbreaking: 20
+      mending: 1
