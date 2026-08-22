@@ -1,9 +1,11 @@
 package pl.pickleshop;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -39,7 +41,7 @@ public class PickleShop extends JavaPlugin {
                 int balance = getConfig().getInt("balances." + uuidString);
                 balances.put(uuid, balance);
             } catch (IllegalArgumentException e) {
-                getLogger().warning("Nieprawidlowe UUID w config.yml: " + uuidString);
+                getLogger().warning("Nieprawidlowe UUID: " + uuidString);
             }
         }
     }
@@ -54,49 +56,122 @@ public class PickleShop extends JavaPlugin {
         saveConfig();
     }
 
+    private int getBalance(Player player) {
+        return balances.getOrDefault(player.getUniqueId(), 0);
+    }
+
+    private void setBalance(Player player, int amount) {
+        balances.put(player.getUniqueId(), amount);
+    }
+
+    private int countPickles(Player player) {
+        int amount = 0;
+
+        for (ItemStack item : player.getInventory().getContents()) {
+            if (item != null && item.getType() == Material.SEA_PICKLE) {
+                amount += item.getAmount();
+            }
+        }
+
+        return amount;
+    }
+
+    private boolean removePickles(Player player, int amount) {
+        int remaining = amount;
+
+        for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
+            ItemStack item = player.getInventory().getItem(slot);
+
+            if (item == null || item.getType() != Material.SEA_PICKLE) {
+                continue;
+            }
+
+            int take = Math.min(item.getAmount(), remaining);
+            item.setAmount(item.getAmount() - take);
+
+            remaining -= take;
+
+            if (remaining <= 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void givePickles(Player player, int amount) {
+        int remaining = amount;
+
+        while (remaining > 0) {
+            int give = Math.min(remaining, 64);
+
+            ItemStack pickles = new ItemStack(Material.SEA_PICKLE, give);
+            player.getInventory().addItem(pickles);
+
+            remaining -= give;
+        }
+    }
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(
+            CommandSender sender,
+            Command command,
+            String label,
+            String[] args
+    ) {
 
         if (!(sender instanceof Player player)) {
             sender.sendMessage("Tej komendy moze uzyc tylko gracz!");
             return true;
         }
 
-        if (!command.getName().equalsIgnoreCase("pickle")) {
-            return false;
-        }
+        String commandName = command.getName().toLowerCase();
 
-        if (args.length == 0) {
-            player.sendMessage(ChatColor.GREEN + "=== PickleShop ===");
-            player.sendMessage(ChatColor.YELLOW + "/pickle balance - sprawdz saldo");
-            player.sendMessage(ChatColor.YELLOW + "/pickle give <ilosc> - dodaj pickle");
-            return true;
-        }
+        // /saldo
+        if (commandName.equals("saldo")) {
 
-        if (args[0].equalsIgnoreCase("balance")) {
-
-            int balance = balances.getOrDefault(player.getUniqueId(), 0);
+            int balance = getBalance(player);
 
             player.sendMessage(
-                    ChatColor.GREEN + "Masz "
+                    ChatColor.GREEN + "Twoje saldo: "
                             + ChatColor.YELLOW + balance
-                            + ChatColor.GREEN + " pickle!"
+                            + ChatColor.GREEN + " pickle."
             );
 
             return true;
         }
 
-        if (args[0].equalsIgnoreCase("give")) {
+        // /bank
+        if (commandName.equals("bank")) {
 
-            if (args.length < 2) {
-                player.sendMessage(
-                        ChatColor.RED + "Uzycie: /pickle give <ilosc>"
-                );
+            if (args.length == 0) {
+                player.sendMessage(ChatColor.GREEN + "=== Pickle Bank ===");
+                player.sendMessage(ChatColor.YELLOW + "/bank wplac <ilosc>");
+                player.sendMessage(ChatColor.YELLOW + "/bank wyplac <ilosc>");
+                player.sendMessage(ChatColor.YELLOW + "/saldo");
                 return true;
             }
 
-            try {
-                int amount = Integer.parseInt(args[1]);
+            // /bank wplac
+            if (args[0].equalsIgnoreCase("wplac")) {
+
+                if (args.length < 2) {
+                    player.sendMessage(
+                            ChatColor.RED + "Uzycie: /bank wplac <ilosc>"
+                    );
+                    return true;
+                }
+
+                int amount;
+
+                try {
+                    amount = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    player.sendMessage(
+                            ChatColor.RED + "Podaj prawidlowa liczbe!"
+                    );
+                    return true;
+                }
 
                 if (amount <= 0) {
                     player.sendMessage(
@@ -105,39 +180,119 @@ public class PickleShop extends JavaPlugin {
                     return true;
                 }
 
-                UUID uuid = player.getUniqueId();
+                int inventoryPickles = countPickles(player);
 
-                int oldBalance = balances.getOrDefault(uuid, 0);
-                int newBalance = oldBalance + amount;
+                if (inventoryPickles < amount) {
+                    player.sendMessage(
+                            ChatColor.RED + "Nie masz tylu Sea Pickle!"
+                    );
+                    player.sendMessage(
+                            ChatColor.GRAY + "Masz w ekwipunku: "
+                                    + ChatColor.YELLOW + inventoryPickles
+                    );
+                    return true;
+                }
 
-                balances.put(uuid, newBalance);
+                if (!removePickles(player, amount)) {
+                    player.sendMessage(
+                            ChatColor.RED + "Nie udalo sie pobrac pickle z ekwipunku."
+                    );
+                    return true;
+                }
+
+                int newBalance = getBalance(player) + amount;
+                setBalance(player, newBalance);
+                saveBalances();
 
                 player.sendMessage(
-                        ChatColor.GREEN + "Dodano "
+                        ChatColor.GREEN + "Wplaciles "
+                                + ChatColor.YELLOW + amount
+                                + ChatColor.GREEN + " pickle do banku!"
+                );
+
+                player.sendMessage(
+                        ChatColor.GREEN + "Saldo: "
+                                + ChatColor.YELLOW + newBalance
+                                + ChatColor.GREEN + " pickle."
+                );
+
+                return true;
+            }
+
+            // /bank wyplac
+            if (args[0].equalsIgnoreCase("wyplac")) {
+
+                if (args.length < 2) {
+                    player.sendMessage(
+                            ChatColor.RED + "Uzycie: /bank wyplac <ilosc>"
+                    );
+                    return true;
+                }
+
+                int amount;
+
+                try {
+                    amount = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    player.sendMessage(
+                            ChatColor.RED + "Podaj prawidlowa liczbe!"
+                    );
+                    return true;
+                }
+
+                if (amount <= 0) {
+                    player.sendMessage(
+                            ChatColor.RED + "Ilosc musi byc wieksza od 0!"
+                    );
+                    return true;
+                }
+
+                int balance = getBalance(player);
+
+                if (balance < amount) {
+                    player.sendMessage(
+                            ChatColor.RED + "Nie masz tylu pickle w banku!"
+                    );
+                    return true;
+                }
+
+                setBalance(player, balance - amount);
+                givePickles(player, amount);
+                saveBalances();
+
+                player.sendMessage(
+                        ChatColor.GREEN + "Wyplaciles "
                                 + ChatColor.YELLOW + amount
                                 + ChatColor.GREEN + " pickle!"
                 );
 
                 player.sendMessage(
-                        ChatColor.GREEN + "Twoje saldo: "
-                                + ChatColor.YELLOW + newBalance
+                        ChatColor.GREEN + "Saldo: "
+                                + ChatColor.YELLOW + (balance - amount)
                                 + ChatColor.GREEN + " pickle."
                 );
 
-            } catch (NumberFormatException e) {
-
-                player.sendMessage(
-                        ChatColor.RED + "Podaj prawidlowa liczbe!"
-                );
+                return true;
             }
+
+            player.sendMessage(
+                    ChatColor.RED + "Uzycie: /bank <wplac|wyplac> <ilosc>"
+            );
 
             return true;
         }
 
-        player.sendMessage(
-                ChatColor.RED + "Nieznana opcja!"
-        );
+        // /sklep
+        if (commandName.equals("sklep")) {
 
-        return true;
+            player.sendMessage(ChatColor.GREEN + "=== PickleShop ===");
+            player.sendMessage(
+                    ChatColor.YELLOW + "Sklep zostanie dodany w kolejnym kroku."
+            );
+
+            return true;
+        }
+
+        return false;
     }
 }
