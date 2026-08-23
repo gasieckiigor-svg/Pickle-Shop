@@ -1089,26 +1089,27 @@ public class PickleShop extends JavaPlugin implements Listener {
             return true;
         }
 
-        return false;
+             return false;
     }
 
-  @EventHandler
-public void onClose(InventoryCloseEvent event) {
+    @EventHandler
+    public void onClose(InventoryCloseEvent event) {
 
-    if (!(event.getPlayer() instanceof Player player)) {
-        return;
-    }
-
-    Bukkit.getScheduler().runTask(this, () -> {
-
-        String title = player.getOpenInventory().getTitle();
-
-        if (!title.equals(SHOP) &&
-                !title.startsWith(CATEGORY)) {
-
-            playerCategories.remove(
-                    player.getUniqueId()
-            );
+        if (!(event.getPlayer() instanceof Player player)) {
+            return;
         }
-    });
+
+        Bukkit.getScheduler().runTask(this, () -> {
+
+            String title = player.getOpenInventory().getTitle();
+
+            if (!title.equals(SHOP) &&
+                    !title.startsWith(CATEGORY)) {
+
+                playerCategories.remove(
+                        player.getUniqueId()
+                );
+            }
+        });
+    }
 }
