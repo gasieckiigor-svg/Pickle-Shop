@@ -180,7 +180,59 @@ public class PickleShop extends JavaPlugin implements Listener {
             amount -= give;
         }
     }
+    // =========================================================
+    // PICKLE TOP
+    // =========================================================
 
+    private void showPickleTop(Player player) {
+
+        List<Map.Entry<UUID, Integer>> top =
+                new ArrayList<>(balances.entrySet());
+
+        top.sort((a, b) ->
+                Integer.compare(b.getValue(), a.getValue())
+        );
+
+        player.sendMessage("");
+        player.sendMessage("§2§l🥒 PICKLE TOP §a§l🥒");
+        player.sendMessage("§8-------------------------");
+
+        if (top.isEmpty()) {
+            player.sendMessage("§7Brak graczy w rankingu.");
+        } else {
+
+            int position = 1;
+
+            for (Map.Entry<UUID, Integer> entry : top) {
+
+                if (position > 10) {
+                    break;
+                }
+
+                OfflinePlayer offlinePlayer =
+                        Bukkit.getOfflinePlayer(entry.getKey());
+
+                String name = offlinePlayer.getName();
+
+                if (name == null) {
+                    name = "Nieznany";
+                }
+
+                player.sendMessage(
+                        "§e#" + position
+                                + " §f" + name
+                                + " §8» §a"
+                                + entry.getValue()
+                                + " §2pickle"
+                );
+
+                position++;
+            }
+        }
+
+        player.sendMessage("§8-------------------------");
+        player.sendMessage("");
+    }
     // =========================================================
     // SKLEP
     // =========================================================
@@ -905,7 +957,14 @@ public class PickleShop extends JavaPlugin implements Listener {
 
         String cmd =
                 command.getName().toLowerCase();
+        // /PICKLETOP
 
+if (cmd.equals("pickletop")) {
+
+    showPickleTop(player);
+
+    return true;
+}
         // /SKLEP
 
         if (cmd.equals("sklep")) {
