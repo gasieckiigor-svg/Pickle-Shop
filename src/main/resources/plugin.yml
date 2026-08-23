@@ -19,6 +19,10 @@ commands:
 
   saldo:
     description: Pokazuje saldo Pickle Bank
+
+  pickletop:
+    description: Pokazuje TOP 10 graczy z najwieksza liczba pickle
+
 permissions:
   pickleshop.use:
     description: Pozwala korzystac z PickleShop
