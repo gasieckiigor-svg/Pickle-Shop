@@ -1,3 +1,4 @@
+```yaml
 balances: {}
 
 settings:
@@ -75,15 +76,15 @@ items:
     price: 5000
     category: pvp
 
-  respawn_anchor:
-    name: "&5&lMAX RESPawn Anchor"
+  max_respawn_anchor:
+    name: "&5&lMAX RESPAWN ANCHOR"
     material: RESPAWN_ANCHOR
     amount: 1
     price: 15000
     category: pvp
 
   # =========================
-  # Jedzenie
+  # JEDZENIE
   # =========================
 
   golden_apple:
@@ -189,7 +190,7 @@ items:
     category: food
 
   # =========================
-  # Surowce
+  # SUROWCE
   # =========================
 
   diamond:
@@ -256,7 +257,7 @@ items:
     category: resources
 
   # =========================
-  # Utility
+  # UTILITY
   # =========================
 
   ender_chest:
@@ -309,7 +310,7 @@ items:
     category: utility
 
   # =========================
-  # Bronie
+  # BRONIE
   # =========================
 
   diamond_sword:
@@ -349,7 +350,7 @@ items:
       unbreaking: 3
 
   # =========================
-  # Narzedzia
+  # NARZEDZIA
   # =========================
 
   diamond_pickaxe:
@@ -482,7 +483,7 @@ items:
       mending: 1
 
   # =========================
-  # GOD / ENDGAME
+  # GOD
   # =========================
 
   god_sword:
@@ -648,7 +649,7 @@ items:
     category: endgame
 
   # =========================
-  # SUPER ENDGAME
+  # ULTIMATE
   # =========================
 
   ultimate_sword:
@@ -725,4 +726,4 @@ items:
       channeling: 1
       unbreaking: 20
       mending: 1
-      
+```
