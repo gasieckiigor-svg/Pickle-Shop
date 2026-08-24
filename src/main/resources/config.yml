@@ -68,6 +68,20 @@ items:
     price: 500
     category: pvp
 
+  ender_eye:
+    name: "&5Eye of Ender"
+    material: ENDER_EYE
+    amount: 1
+    price: 5000
+    category: pvp
+
+  respawn_anchor:
+    name: "&5&lMAX RESPawn Anchor"
+    material: RESPAWN_ANCHOR
+    amount: 1
+    price: 15000
+    category: pvp
+
   # =========================
   # Jedzenie
   # =========================
@@ -91,6 +105,87 @@ items:
     material: GOLDEN_CARROT
     amount: 16
     price: 1500
+    category: food
+
+  cooked_beef:
+    name: "&6Cooked Beef"
+    material: COOKED_BEEF
+    amount: 16
+    price: 800
+    category: food
+
+  suspicious_stew:
+    name: "&5Suspicious Stew"
+    material: SUSPICIOUS_STEW
+    amount: 1
+    price: 5000
+    category: food
+
+  # =========================
+  # POTKI
+  # =========================
+
+  potion_strength:
+    name: "&c&lPOTION OF STRENGTH"
+    material: POTION
+    amount: 1
+    price: 20000
+    category: food
+
+  potion_speed:
+    name: "&b&lPOTION OF SPEED"
+    material: POTION
+    amount: 1
+    price: 16000
+    category: food
+
+  potion_fire_resistance:
+    name: "&6&lPOTION OF FIRE RESISTANCE"
+    material: POTION
+    amount: 1
+    price: 18000
+    category: food
+
+  potion_regeneration:
+    name: "&d&lPOTION OF REGENERATION"
+    material: POTION
+    amount: 1
+    price: 24000
+    category: food
+
+  potion_invisibility:
+    name: "&7&lPOTION OF INVISIBILITY"
+    material: POTION
+    amount: 1
+    price: 30000
+    category: food
+
+  potion_night_vision:
+    name: "&9&lPOTION OF NIGHT VISION"
+    material: POTION
+    amount: 1
+    price: 14000
+    category: food
+
+  potion_water_breathing:
+    name: "&3&lPOTION OF WATER BREATHING"
+    material: POTION
+    amount: 1
+    price: 14000
+    category: food
+
+  potion_leaping:
+    name: "&a&lPOTION OF LEAPING"
+    material: POTION
+    amount: 1
+    price: 18000
+    category: food
+
+  potion_turtle_master:
+    name: "&2&lPOTION OF THE TURTLE MASTER"
+    material: POTION
+    amount: 1
+    price: 50000
     category: food
 
   # =========================
@@ -139,6 +234,27 @@ items:
     price: 4000
     category: resources
 
+  ancient_debris:
+    name: "&8Ancient Debris"
+    material: ANCIENT_DEBRIS
+    amount: 1
+    price: 12000
+    category: resources
+
+  diamond_block:
+    name: "&bDiamond Block"
+    material: DIAMOND_BLOCK
+    amount: 1
+    price: 4500
+    category: resources
+
+  netherite_block:
+    name: "&8&lNetherite Block"
+    material: NETHERITE_BLOCK
+    amount: 1
+    price: 120000
+    category: resources
+
   # =========================
   # Utility
   # =========================
@@ -176,6 +292,20 @@ items:
     material: PHANTOM_MEMBRANE
     amount: 16
     price: 6000
+    category: utility
+
+  crying_obsidian:
+    name: "&5Crying Obsidian"
+    material: CRYING_OBSIDIAN
+    amount: 16
+    price: 10000
+    category: utility
+
+  lodestone:
+    name: "&6Lodestone"
+    material: LODESTONE
+    amount: 1
+    price: 35000
     category: utility
 
   # =========================
@@ -245,8 +375,114 @@ items:
       unbreaking: 5
       mending: 1
 
+  diamond_axe:
+    name: "&bDiamond Axe"
+    material: DIAMOND_AXE
+    amount: 1
+    price: 14000
+    category: tools
+    enchants:
+      efficiency: 5
+      sharpness: 5
+      unbreaking: 3
+
   # =========================
-  # OP / ENDGAME
+  # PICKLE SET
+  # =========================
+
+  pickle_sword:
+    name: "&2&lPICKLE SWORD"
+    material: NETHERITE_SWORD
+    amount: 1
+    price: 750000
+    category: endgame
+    enchants:
+      sharpness: 15
+      looting: 8
+      sweeping_edge: 8
+      fire_aspect: 3
+      unbreaking: 15
+      mending: 1
+
+  pickle_pickaxe:
+    name: "&a&lPICKLE PICKAXE"
+    material: NETHERITE_PICKAXE
+    amount: 1
+    price: 800000
+    category: endgame
+    enchants:
+      efficiency: 15
+      fortune: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_axe:
+    name: "&2&lPICKLE AXE"
+    material: NETHERITE_AXE
+    amount: 1
+    price: 700000
+    category: endgame
+    enchants:
+      efficiency: 15
+      sharpness: 12
+      unbreaking: 15
+      mending: 1
+
+  pickle_helmet:
+    name: "&2&lPICKLE HELMET"
+    material: NETHERITE_HELMET
+    amount: 1
+    price: 650000
+    category: endgame
+    enchants:
+      protection: 12
+      respiration: 5
+      aqua_affinity: 1
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_chestplate:
+    name: "&2&lPICKLE CHESTPLATE"
+    material: NETHERITE_CHESTPLATE
+    amount: 1
+    price: 900000
+    category: endgame
+    enchants:
+      protection: 12
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_leggings:
+    name: "&2&lPICKLE LEGGINGS"
+    material: NETHERITE_LEGGINGS
+    amount: 1
+    price: 800000
+    category: endgame
+    enchants:
+      protection: 12
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_boots:
+    name: "&2&lPICKLE BOOTS"
+    material: NETHERITE_BOOTS
+    amount: 1
+    price: 750000
+    category: endgame
+    enchants:
+      protection: 12
+      feather_falling: 10
+      depth_strider: 5
+      soul_speed: 5
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  # =========================
+  # GOD / ENDGAME
   # =========================
 
   god_sword:
@@ -451,3 +687,42 @@ items:
     enchants:
       unbreaking: 20
       mending: 1
+
+  ultimate_axe:
+    name: "&5&lULTIMATE AXE"
+    material: NETHERITE_AXE
+    amount: 1
+    price: 1200000
+    category: endgame
+    enchants:
+      sharpness: 20
+      efficiency: 20
+      unbreaking: 20
+      mending: 1
+
+  ultimate_bow:
+    name: "&6&lULTIMATE BOW"
+    material: BOW
+    amount: 1
+    price: 1100000
+    category: endgame
+    enchants:
+      power: 20
+      punch: 10
+      flame: 1
+      infinity: 1
+      unbreaking: 20
+
+  ultimate_trident:
+    name: "&b&lULTIMATE TRIDENT"
+    material: TRIDENT
+    amount: 1
+    price: 1300000
+    category: endgame
+    enchants:
+      impaling: 20
+      loyalty: 10
+      channeling: 1
+      unbreaking: 20
+      mending: 1
+      
