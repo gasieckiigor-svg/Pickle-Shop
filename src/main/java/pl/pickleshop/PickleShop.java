@@ -1,4 +1,3 @@
-```java
 package pl.pickleshop;
 
 import org.bukkit.Bukkit;
@@ -18,7 +17,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionType;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
 
@@ -70,7 +70,7 @@ public class PickleShop extends JavaPlugin implements Listener {
                 int balance =
                         getConfig().getInt("balances." + uuidString);
 
-                balances.put(uuid, balance);
+                balances.put(uuid, Math.max(0, balance));
 
             } catch (Exception ignored) {
             }
@@ -81,11 +81,11 @@ public class PickleShop extends JavaPlugin implements Listener {
 
         getConfig().set("balances", null);
 
-        for (UUID uuid : balances.keySet()) {
+        for (Map.Entry<UUID, Integer> entry : balances.entrySet()) {
 
             getConfig().set(
-                    "balances." + uuid,
-                    balances.get(uuid)
+                    "balances." + entry.getKey().toString(),
+                    Math.max(0, entry.getValue())
             );
         }
 
@@ -130,6 +130,10 @@ public class PickleShop extends JavaPlugin implements Listener {
     }
 
     private boolean removePickles(Player player, int amount) {
+
+        if (countPickles(player) < amount) {
+            return false;
+        }
 
         int remaining = amount;
 
@@ -183,7 +187,6 @@ public class PickleShop extends JavaPlugin implements Listener {
             if (!leftover.isEmpty()) {
 
                 for (ItemStack item : leftover.values()) {
-
                     player.getWorld().dropItemNaturally(
                             player.getLocation(),
                             item
@@ -254,7 +257,7 @@ public class PickleShop extends JavaPlugin implements Listener {
     }
 
     // =========================================================
-    // SKLEP
+    // SKLEP - GLOWNE MENU
     // =========================================================
 
     private void openMainShop(Player player) {
@@ -266,7 +269,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                         SHOP
                 );
 
-        // PvP
         inv.setItem(
                 10,
                 menuItem(
@@ -276,7 +278,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Jedzenie
         inv.setItem(
                 12,
                 menuItem(
@@ -286,7 +287,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Surowce
         inv.setItem(
                 14,
                 menuItem(
@@ -296,7 +296,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Utility
         inv.setItem(
                 16,
                 menuItem(
@@ -306,7 +305,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Bronie
         inv.setItem(
                 28,
                 menuItem(
@@ -316,7 +314,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Narzedzia
         inv.setItem(
                 30,
                 menuItem(
@@ -326,7 +323,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Endgame
         inv.setItem(
                 32,
                 menuItem(
@@ -336,7 +332,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Elytra
         inv.setItem(
                 34,
                 menuItem(
@@ -346,7 +341,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 )
         );
 
-        // Saldo
         inv.setItem(
                 40,
                 menuItem(
@@ -358,6 +352,10 @@ public class PickleShop extends JavaPlugin implements Listener {
 
         player.openInventory(inv);
     }
+
+    // =========================================================
+    // KATEGORIE
+    // =========================================================
 
     private void openCategory(Player player, String category) {
 
@@ -428,7 +426,7 @@ public class PickleShop extends JavaPlugin implements Listener {
     }
 
     // =========================================================
-    // TWORZENIE ITEMU Z CONFIG
+    // TWORZENIE ITEMU
     // =========================================================
 
     private ItemStack createShopItem(String key) {
@@ -480,7 +478,7 @@ public class PickleShop extends JavaPlugin implements Listener {
                 new ItemStack(
                         material,
                         Math.min(
-                                amount,
+                                Math.max(amount, 1),
                                 material.getMaxStackSize()
                         )
                 );
@@ -498,7 +496,6 @@ public class PickleShop extends JavaPlugin implements Listener {
                 new ArrayList<>();
 
         lore.add("");
-
         lore.add(
                 "§7Ilosc: §f" + amount
         );
@@ -508,115 +505,31 @@ public class PickleShop extends JavaPlugin implements Listener {
         );
 
         lore.add("");
-
         lore.add(
                 "§aKliknij, aby kupic!"
         );
 
         meta.setLore(lore);
 
-        // =====================================================
-        // POTKI
-        // =====================================================
-
-        applyPotionType(
-                key,
-                item,
-                meta
-        );
-
-        // =====================================================
-        // ENCHANTY
-        // =====================================================
-
-        applyEnchantments(
-                path,
-                meta
-        );
+        applyEnchants(meta, path);
 
         item.setItemMeta(meta);
 
+        // Potki musza miec odpowiedni efekt
+        applyPotionEffect(item, key);
+
         return item;
-    }
-
-    // =========================================================
-    // POTKI
-    // =========================================================
-
-    private void applyPotionType(
-            String key,
-            ItemStack item,
-            ItemMeta meta) {
-
-        if (item.getType() != Material.POTION) {
-            return;
-        }
-
-        if (!(meta instanceof PotionMeta potionMeta)) {
-            return;
-        }
-
-        PotionType potionType = null;
-
-        switch (key.toLowerCase()) {
-
-            case "potion_strength":
-                potionType = PotionType.STRENGTH;
-                break;
-
-            case "potion_speed":
-                potionType = PotionType.SWIFTNESS;
-                break;
-
-            case "potion_fire_resistance":
-                potionType = PotionType.FIRE_RESISTANCE;
-                break;
-
-            case "potion_regeneration":
-                potionType = PotionType.REGENERATION;
-                break;
-
-            case "potion_invisibility":
-                potionType = PotionType.INVISIBILITY;
-                break;
-
-            case "potion_night_vision":
-                potionType = PotionType.NIGHT_VISION;
-                break;
-
-            case "potion_water_breathing":
-                potionType = PotionType.WATER_BREATHING;
-                break;
-
-            case "potion_leaping":
-                potionType = PotionType.LEAPING;
-                break;
-
-            case "potion_turtle_master":
-                potionType = PotionType.TURTLE_MASTER;
-                break;
-
-            default:
-                break;
-        }
-
-        if (potionType != null) {
-            potionMeta.setBasePotionType(potionType);
-        }
     }
 
     // =========================================================
     // ENCHANTY
     // =========================================================
 
-    private void applyEnchantments(
-            String path,
-            ItemMeta meta) {
+    private void applyEnchants(ItemMeta meta, String path) {
 
         if (getConfig().getConfigurationSection(
                 path + ".enchants"
         ) == null) {
-
             return;
         }
 
@@ -635,7 +548,7 @@ public class PickleShop extends JavaPlugin implements Listener {
             Enchantment enchant =
                     getEnchantment(enchantName);
 
-            if (enchant != null) {
+            if (enchant != null && level > 0) {
 
                 meta.addEnchant(
                         enchant,
@@ -727,7 +640,151 @@ public class PickleShop extends JavaPlugin implements Listener {
     }
 
     // =========================================================
-    // KLIKANIE
+    // POTKI
+    // =========================================================
+
+    private void applyPotionEffect(ItemStack item, String key) {
+
+        if (item.getType() != Material.POTION) {
+            return;
+        }
+
+        if (!(item.getItemMeta() instanceof PotionMeta meta)) {
+            return;
+        }
+
+        PotionEffect effect = null;
+
+        switch (key.toLowerCase()) {
+
+            case "potion_strength":
+                effect = new PotionEffect(
+                        PotionEffectType.STRENGTH,
+                        3600,
+                        1,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_speed":
+                effect = new PotionEffect(
+                        PotionEffectType.SPEED,
+                        3600,
+                        1,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_fire_resistance":
+                effect = new PotionEffect(
+                        PotionEffectType.FIRE_RESISTANCE,
+                        3600,
+                        0,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_regeneration":
+                effect = new PotionEffect(
+                        PotionEffectType.REGENERATION,
+                        900,
+                        1,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_invisibility":
+                effect = new PotionEffect(
+                        PotionEffectType.INVISIBILITY,
+                        3600,
+                        0,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_night_vision":
+                effect = new PotionEffect(
+                        PotionEffectType.NIGHT_VISION,
+                        3600,
+                        0,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_water_breathing":
+                effect = new PotionEffect(
+                        PotionEffectType.WATER_BREATHING,
+                        3600,
+                        0,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_leaping":
+                effect = new PotionEffect(
+                        PotionEffectType.JUMP_BOOST,
+                        3600,
+                        1,
+                        true,
+                        true,
+                        true
+                );
+                break;
+
+            case "potion_turtle_master":
+                effect = new PotionEffect(
+                        PotionEffectType.RESISTANCE,
+                        900,
+                        3,
+                        true,
+                        true,
+                        true
+                );
+
+                meta.addCustomEffect(
+                        new PotionEffect(
+                                PotionEffectType.SLOWNESS,
+                                900,
+                                5,
+                                true,
+                                true,
+                                true
+                        ),
+                        true
+                );
+                break;
+
+            default:
+                break;
+        }
+
+        if (effect != null) {
+
+            meta.addCustomEffect(
+                    effect,
+                    true
+            );
+
+            item.setItemMeta(meta);
+        }
+    }
+
+    // =========================================================
+    // KLIKANIE GUI
     // =========================================================
 
     @EventHandler
@@ -758,7 +815,7 @@ public class PickleShop extends JavaPlugin implements Listener {
         }
 
         // =====================================================
-        // GLOWNA STRONA
+        // GLOWNE MENU
         // =====================================================
 
         if (title.equals(SHOP)) {
@@ -805,15 +862,18 @@ public class PickleShop extends JavaPlugin implements Listener {
         }
 
         // =====================================================
-        // KATEGORIA
+        // POWROT
         // =====================================================
 
         if (event.getSlot() == 49) {
 
             openMainShop(player);
-
             return;
         }
+
+        // =====================================================
+        // KUPNO ITEMU
+        // =====================================================
 
         String category =
                 playerCategories.get(
@@ -824,22 +884,35 @@ public class PickleShop extends JavaPlugin implements Listener {
             return;
         }
 
+        if (getConfig().getConfigurationSection("items") == null) {
+            return;
+        }
+
+        String keyFound = findItemKey(clicked, category);
+
+        if (keyFound == null) {
+            return;
+        }
+
+        buyItem(player, keyFound);
+    }
+
+    // =========================================================
+    // ZNAJDOWANIE ITEMU
+    // =========================================================
+
+    private String findItemKey(ItemStack clicked, String category) {
+
         if (clicked.getItemMeta() == null ||
                 clicked.getItemMeta().getDisplayName() == null) {
 
-            return;
+            return null;
         }
 
         String clickedName =
                 ChatColor.stripColor(
                         clicked.getItemMeta().getDisplayName()
                 );
-
-        String keyFound = null;
-
-        if (getConfig().getConfigurationSection("items") == null) {
-            return;
-        }
 
         for (String key :
                 getConfig()
@@ -867,39 +940,31 @@ public class PickleShop extends JavaPlugin implements Listener {
                             )
                     );
 
-            if (ChatColor.stripColor(configName)
-                    .equals(clickedName)) {
+            String strippedConfigName =
+                    ChatColor.stripColor(configName);
 
-                keyFound = key;
+            if (strippedConfigName.equals(clickedName)) {
 
-                break;
+                return key;
             }
         }
 
-        if (keyFound == null) {
-            return;
-        }
-
-        buyItem(
-                player,
-                keyFound
-        );
+        return null;
     }
 
     // =========================================================
     // KUPOWANIE
     // =========================================================
 
-    private void buyItem(
-            Player player,
-            String key) {
+    private void buyItem(Player player, String key) {
 
         String path =
                 "items." + key;
 
         int price =
                 getConfig().getInt(
-                        path + ".price"
+                        path + ".price",
+                        0
                 );
 
         int amount =
@@ -908,12 +973,16 @@ public class PickleShop extends JavaPlugin implements Listener {
                         1
                 );
 
-        int balance =
-                getBalance(player);
-
-        if (price < 0 || amount <= 0) {
+        if (price < 0) {
             return;
         }
+
+        if (amount <= 0) {
+            return;
+        }
+
+        int balance =
+                getBalance(player);
 
         if (balance < price) {
 
@@ -943,6 +1012,11 @@ public class PickleShop extends JavaPlugin implements Listener {
                 Material.matchMaterial(materialName);
 
         if (material == null) {
+
+            player.sendMessage(
+                    "§cBlad: nieprawidlowy material itemu."
+            );
+
             return;
         }
 
@@ -967,64 +1041,60 @@ public class PickleShop extends JavaPlugin implements Listener {
 
             meta.setDisplayName(name);
 
-            // Potki
-            applyPotionType(
-                    key,
-                    item,
-                    meta
-            );
-
-            // Enchanty
-            applyEnchantments(
-                    path,
-                    meta
-            );
+            applyEnchants(meta, path);
 
             item.setItemMeta(meta);
         }
 
-        // =====================================================
-        // NAJPIERW SPRAWDZAMY, CZY JEST MIEJSCE
-        // =====================================================
+        // Nakladamy efekt potki PO ustawieniu meta.
+        applyPotionEffect(item, key);
 
+        // Najpierw sprawdzamy miejsce w ekwipunku.
         HashMap<Integer, ItemStack> leftover =
                 player.getInventory().addItem(item);
 
         if (!leftover.isEmpty()) {
 
-            // Cofamy dodany przedmiot.
-            for (ItemStack leftoverItem :
-                    leftover.values()) {
+            // Usuwamy to, co faktycznie zostalo dodane,
+            // aby transakcja byla bezpieczna.
+            int addedAmount = amount;
 
-                player.getWorld().dropItemNaturally(
-                        player.getLocation(),
-                        leftoverItem
+            for (ItemStack left : leftover.values()) {
+                addedAmount -= left.getAmount();
+            }
+
+            // Usuwamy dodany przedmiot.
+            if (addedAmount > 0) {
+
+                removePurchasedItem(
+                        player,
+                        item,
+                        addedAmount
                 );
             }
 
-            // Jeżeli część weszła do ekwipunku,
-            // zwracamy pieniądze tylko wtedy,
-            // gdy naprawdę nie udało się dodać całości.
-
-            // Usuwamy dodaną część przez odtworzenie
-            // bezpiecznej transakcji.
             player.sendMessage(
-                    "§cNie masz wystarczajaco miejsca w ekwipunku!"
+                    "§cMasz za malo miejsca w ekwipunku!"
             );
 
             return;
         }
 
-        // =====================================================
-        // POBIERAMY PICKLE DOPIERO PO UDANYM DODANIU ITEMU
-        // =====================================================
-
+        // Dopiero teraz pobieramy pickle.
         setBalance(
                 player,
                 balance - price
         );
 
         saveBalances();
+
+        String displayName =
+                ChatColor.stripColor(
+                        getConfig().getString(
+                                path + ".name",
+                                key
+                        )
+                );
 
         player.sendMessage(
                 color(
@@ -1036,12 +1106,7 @@ public class PickleShop extends JavaPlugin implements Listener {
                         + "§aKupiono §f"
                         + amount
                         + "x "
-                        + ChatColor.stripColor(
-                                getConfig().getString(
-                                        path + ".name",
-                                        key
-                                )
-                        )
+                        + displayName
                         + " §aza §e"
                         + price
                         + " pickle!"
@@ -1049,7 +1114,51 @@ public class PickleShop extends JavaPlugin implements Listener {
     }
 
     // =========================================================
-    // GUI
+    // USUWANIE KUPIONEGO ITEMU PRZY BLEDZIE
+    // =========================================================
+
+    private void removePurchasedItem(
+            Player player,
+            ItemStack original,
+            int amount) {
+
+        int remaining = amount;
+
+        for (int slot = 0;
+             slot < player.getInventory().getSize();
+             slot++) {
+
+            ItemStack item =
+                    player.getInventory().getItem(slot);
+
+            if (item == null) {
+                continue;
+            }
+
+            if (!item.isSimilar(original)) {
+                continue;
+            }
+
+            int remove =
+                    Math.min(
+                            item.getAmount(),
+                            remaining
+                    );
+
+            item.setAmount(
+                    item.getAmount() - remove
+            );
+
+            remaining -= remove;
+
+            if (remaining <= 0) {
+                return;
+            }
+        }
+    }
+
+    // =========================================================
+    // GUI ITEM
     // =========================================================
 
     private ItemStack menuItem(
@@ -1326,6 +1435,10 @@ public class PickleShop extends JavaPlugin implements Listener {
                 return true;
             }
 
+            player.sendMessage(
+                    "§cNieznana opcja banku!"
+            );
+
             return true;
         }
 
@@ -1333,33 +1446,25 @@ public class PickleShop extends JavaPlugin implements Listener {
     }
 
     // =========================================================
-    // ZAMYKANIE GUI
+    // ZAMKNIECIE GUI
     // =========================================================
 
     @EventHandler
-    public void onClose(
-            InventoryCloseEvent event) {
+    public void onClose(InventoryCloseEvent event) {
 
         if (!(event.getPlayer() instanceof Player player)) {
             return;
         }
 
-        Bukkit.getScheduler().runTask(
-                this,
-                () -> {
+        String title =
+                event.getView().getTitle();
 
-                    String title =
-                            player.getOpenInventory().getTitle();
+        if (title.equals(SHOP) ||
+                title.startsWith(CATEGORY)) {
 
-                    if (!title.equals(SHOP) &&
-                            !title.startsWith(CATEGORY)) {
-
-                        playerCategories.remove(
-                                player.getUniqueId()
-                        );
-                    }
-                }
-        );
+            playerCategories.remove(
+                    player.getUniqueId()
+            );
+        }
     }
 }
-```
