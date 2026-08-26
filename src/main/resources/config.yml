@@ -1,11 +1,8 @@
-```yaml
-balances: {}
-
 settings:
   pickle-per-shulker: 1728
 
 messages:
-  prefix: "&2&lPICKLE &a&lSHOP &8» "
+  prefix: '&2&lPICKLE &a&lSHOP &8» '
 
 items:
 
@@ -14,73 +11,59 @@ items:
   # =========================
 
   cobweb:
-    name: "&fCobweb"
+    name: '&fCobweb'
     material: COBWEB
     amount: 16
     price: 2000
     category: pvp
 
   crystal:
-    name: "&dEnd Crystal"
+    name: '&dEnd Crystal'
     material: END_CRYSTAL
     amount: 16
     price: 8000
     category: pvp
 
   anchor:
-    name: "&5Respawn Anchor"
+    name: '&5Respawn Anchor'
     material: RESPAWN_ANCHOR
     amount: 4
     price: 3000
     category: pvp
 
   obsidian:
-    name: "&5Obsidian"
+    name: '&5Obsidian'
     material: OBSIDIAN
     amount: 16
     price: 2500
     category: pvp
 
   pearl:
-    name: "&bEnder Pearl"
+    name: '&bEnder Pearl'
     material: ENDER_PEARL
-    amount: 16
+    amount: 8
     price: 4000
     category: pvp
 
   totem:
-    name: "&eTotem of Undying"
+    name: '&eTotem of Undying'
     material: TOTEM_OF_UNDYING
     amount: 1
     price: 7500
     category: pvp
 
   tnt:
-    name: "&cTNT"
+    name: '&cTNT'
     material: TNT
-    amount: 16
+    amount: 8
     price: 5000
     category: pvp
 
   arrows:
-    name: "&fArrows"
+    name: '&fArrows'
     material: ARROW
     amount: 16
     price: 500
-    category: pvp
-
-  ender_eye:
-    name: "&5Eye of Ender"
-    material: ENDER_EYE
-    amount: 1
-    price: 5000
-    category: pvp
-
-  max_respawn_anchor:
-    name: "&5&lMAX RESPAWN ANCHOR"
-    material: RESPAWN_ANCHOR
-    amount: 1
-    price: 15000
     category: pvp
 
   # =========================
@@ -88,38 +71,31 @@ items:
   # =========================
 
   golden_apple:
-    name: "&6Golden Apple"
+    name: '&6Golden Apple'
     material: GOLDEN_APPLE
     amount: 16
     price: 5000
     category: food
 
   enchanted_golden_apple:
-    name: "&dEnchanted Golden Apple"
+    name: '&dEnchanted Golden Apple'
     material: ENCHANTED_GOLDEN_APPLE
     amount: 1
     price: 12500
     category: food
 
   golden_carrot:
-    name: "&6Golden Carrot"
+    name: '&6Golden Carrot'
     material: GOLDEN_CARROT
     amount: 16
     price: 1500
     category: food
 
   cooked_beef:
-    name: "&6Cooked Beef"
+    name: '&6Cooked Beef'
     material: COOKED_BEEF
     amount: 16
     price: 800
-    category: food
-
-  suspicious_stew:
-    name: "&5Suspicious Stew"
-    material: SUSPICIOUS_STEW
-    amount: 1
-    price: 5000
     category: food
 
   # =========================
@@ -127,64 +103,73 @@ items:
   # =========================
 
   potion_strength:
-    name: "&c&lPOTION OF STRENGTH"
+    name: '&c&lPOTION OF STRENGTH'
     material: POTION
+    potion: STRENGTH
     amount: 1
     price: 20000
     category: food
 
   potion_speed:
-    name: "&b&lPOTION OF SPEED"
+    name: '&b&lPOTION OF SPEED'
     material: POTION
+    potion: SWIFTNESS
     amount: 1
     price: 16000
     category: food
 
   potion_fire_resistance:
-    name: "&6&lPOTION OF FIRE RESISTANCE"
+    name: '&6&lPOTION OF FIRE RESISTANCE'
     material: POTION
+    potion: FIRE_RESISTANCE
     amount: 1
     price: 18000
     category: food
 
   potion_regeneration:
-    name: "&d&lPOTION OF REGENERATION"
+    name: '&d&lPOTION OF REGENERATION'
     material: POTION
+    potion: REGENERATION
     amount: 1
     price: 24000
     category: food
 
   potion_invisibility:
-    name: "&7&lPOTION OF INVISIBILITY"
+    name: '&7&lPOTION OF INVISIBILITY'
     material: POTION
+    potion: INVISIBILITY
     amount: 1
     price: 30000
     category: food
 
   potion_night_vision:
-    name: "&9&lPOTION OF NIGHT VISION"
+    name: '&9&lPOTION OF NIGHT VISION'
     material: POTION
+    potion: NIGHT_VISION
     amount: 1
     price: 14000
     category: food
 
   potion_water_breathing:
-    name: "&3&lPOTION OF WATER BREATHING"
+    name: '&3&lPOTION OF WATER BREATHING'
     material: POTION
+    potion: WATER_BREATHING
     amount: 1
     price: 14000
     category: food
 
   potion_leaping:
-    name: "&a&lPOTION OF LEAPING"
+    name: '&a&lPOTION OF LEAPING'
     material: POTION
+    potion: LEAPING
     amount: 1
     price: 18000
     category: food
 
   potion_turtle_master:
-    name: "&2&lPOTION OF THE TURTLE MASTER"
+    name: '&2&lPOTION OF THE TURTLE MASTER'
     material: POTION
+    potion: TURTLE_MASTER
     amount: 1
     price: 50000
     category: food
@@ -194,63 +179,63 @@ items:
   # =========================
 
   diamond:
-    name: "&bDiamond"
+    name: '&bDiamond'
     material: DIAMOND
     amount: 16
     price: 5000
     category: resources
 
   netherite_ingot:
-    name: "&8Netherite Ingot"
+    name: '&8Netherite Ingot'
     material: NETHERITE_INGOT
-    amount: 1
+    amount: 2
     price: 15000
     category: resources
 
   nether_star:
-    name: "&fNether Star"
+    name: '&fNether Star'
     material: NETHER_STAR
     amount: 1
     price: 30000
     category: resources
 
   beacon:
-    name: "&bBeacon"
+    name: '&bBeacon'
     material: BEACON
     amount: 1
     price: 60000
     category: resources
 
   shulker_shell:
-    name: "&dShulker Shell"
+    name: '&dShulker Shell'
     material: SHULKER_SHELL
-    amount: 8
+    amount: 4
     price: 12000
     category: resources
 
   blaze_rod:
-    name: "&6Blaze Rod"
+    name: '&6Blaze Rod'
     material: BLAZE_ROD
-    amount: 16
-    price: 4000
+    amount: 8
+    price: 6500
     category: resources
 
   ancient_debris:
-    name: "&8Ancient Debris"
+    name: '&8Ancient Debris'
     material: ANCIENT_DEBRIS
     amount: 1
     price: 12000
     category: resources
 
   diamond_block:
-    name: "&bDiamond Block"
+    name: '&bDiamond Block'
     material: DIAMOND_BLOCK
     amount: 1
     price: 4500
     category: resources
 
   netherite_block:
-    name: "&8&lNetherite Block"
+    name: '&8&lNetherite Block'
     material: NETHERITE_BLOCK
     amount: 1
     price: 120000
@@ -261,49 +246,49 @@ items:
   # =========================
 
   ender_chest:
-    name: "&5Ender Chest"
+    name: '&5Ender Chest'
     material: ENDER_CHEST
     amount: 1
     price: 7500
     category: utility
 
   anvil:
-    name: "&7Anvil"
+    name: '&7Anvil'
     material: ANVIL
     amount: 1
-    price: 5000
+    price: 1000
     category: utility
 
   experience:
-    name: "&aExperience Bottle"
+    name: '&aExperience Bottle'
     material: EXPERIENCE_BOTTLE
     amount: 16
-    price: 3000
+    price: 2250
     category: utility
 
   fireworks:
-    name: "&fFirework Rockets"
+    name: '&fFirework Rockets'
     material: FIREWORK_ROCKET
     amount: 16
     price: 2000
     category: utility
 
   phantom_membrane:
-    name: "&fPhantom Membrane"
+    name: '&fPhantom Membrane'
     material: PHANTOM_MEMBRANE
     amount: 16
     price: 6000
     category: utility
 
   crying_obsidian:
-    name: "&5Crying Obsidian"
+    name: '&5Crying Obsidian'
     material: CRYING_OBSIDIAN
     amount: 16
     price: 10000
     category: utility
 
   lodestone:
-    name: "&6Lodestone"
+    name: '&6Lodestone'
     material: LODESTONE
     amount: 1
     price: 35000
@@ -314,10 +299,10 @@ items:
   # =========================
 
   diamond_sword:
-    name: "&bDiamond Sword"
+    name: '&bDiamond Sword'
     material: DIAMOND_SWORD
     amount: 1
-    price: 15000
+    price: 10000
     category: weapons
     enchants:
       sharpness: 5
@@ -326,7 +311,7 @@ items:
       unbreaking: 3
 
   netherite_sword:
-    name: "&8Netherite Sword"
+    name: '&8Netherite Sword'
     material: NETHERITE_SWORD
     amount: 1
     price: 40000
@@ -339,7 +324,7 @@ items:
       mending: 1
 
   trident:
-    name: "&bTrident"
+    name: '&bTrident'
     material: TRIDENT
     amount: 1
     price: 25000
@@ -350,11 +335,11 @@ items:
       unbreaking: 3
 
   # =========================
-  # NARZEDZIA
+  # NARZĘDZIA
   # =========================
 
   diamond_pickaxe:
-    name: "&bDiamond Pickaxe"
+    name: '&bDiamond Pickaxe'
     material: DIAMOND_PICKAXE
     amount: 1
     price: 12000
@@ -365,10 +350,10 @@ items:
       unbreaking: 3
 
   netherite_pickaxe:
-    name: "&8Netherite Pickaxe"
+    name: '&8Netherite Pickaxe'
     material: NETHERITE_PICKAXE
     amount: 1
-    price: 35000
+    price: 30000
     category: tools
     enchants:
       efficiency: 7
@@ -377,7 +362,7 @@ items:
       mending: 1
 
   diamond_axe:
-    name: "&bDiamond Axe"
+    name: '&bDiamond Axe'
     material: DIAMOND_AXE
     amount: 1
     price: 14000
@@ -388,106 +373,11 @@ items:
       unbreaking: 3
 
   # =========================
-  # PICKLE SET
-  # =========================
-
-  pickle_sword:
-    name: "&2&lPICKLE SWORD"
-    material: NETHERITE_SWORD
-    amount: 1
-    price: 750000
-    category: endgame
-    enchants:
-      sharpness: 15
-      looting: 8
-      sweeping_edge: 8
-      fire_aspect: 3
-      unbreaking: 15
-      mending: 1
-
-  pickle_pickaxe:
-    name: "&a&lPICKLE PICKAXE"
-    material: NETHERITE_PICKAXE
-    amount: 1
-    price: 800000
-    category: endgame
-    enchants:
-      efficiency: 15
-      fortune: 8
-      unbreaking: 15
-      mending: 1
-
-  pickle_axe:
-    name: "&2&lPICKLE AXE"
-    material: NETHERITE_AXE
-    amount: 1
-    price: 700000
-    category: endgame
-    enchants:
-      efficiency: 15
-      sharpness: 12
-      unbreaking: 15
-      mending: 1
-
-  pickle_helmet:
-    name: "&2&lPICKLE HELMET"
-    material: NETHERITE_HELMET
-    amount: 1
-    price: 650000
-    category: endgame
-    enchants:
-      protection: 12
-      respiration: 5
-      aqua_affinity: 1
-      thorns: 8
-      unbreaking: 15
-      mending: 1
-
-  pickle_chestplate:
-    name: "&2&lPICKLE CHESTPLATE"
-    material: NETHERITE_CHESTPLATE
-    amount: 1
-    price: 900000
-    category: endgame
-    enchants:
-      protection: 12
-      thorns: 8
-      unbreaking: 15
-      mending: 1
-
-  pickle_leggings:
-    name: "&2&lPICKLE LEGGINGS"
-    material: NETHERITE_LEGGINGS
-    amount: 1
-    price: 800000
-    category: endgame
-    enchants:
-      protection: 12
-      thorns: 8
-      unbreaking: 15
-      mending: 1
-
-  pickle_boots:
-    name: "&2&lPICKLE BOOTS"
-    material: NETHERITE_BOOTS
-    amount: 1
-    price: 750000
-    category: endgame
-    enchants:
-      protection: 12
-      feather_falling: 10
-      depth_strider: 5
-      soul_speed: 5
-      thorns: 8
-      unbreaking: 15
-      mending: 1
-
-  # =========================
   # GOD
   # =========================
 
   god_sword:
-    name: "&4&lGOD SWORD"
+    name: '&4&lGOD SWORD'
     material: NETHERITE_SWORD
     amount: 1
     price: 250000
@@ -500,7 +390,7 @@ items:
       mending: 1
 
   god_pickaxe:
-    name: "&b&lGOD PICKAXE"
+    name: '&b&lGOD PICKAXE'
     material: NETHERITE_PICKAXE
     amount: 1
     price: 300000
@@ -512,7 +402,7 @@ items:
       mending: 1
 
   god_axe:
-    name: "&c&lGOD AXE"
+    name: '&c&lGOD AXE'
     material: NETHERITE_AXE
     amount: 1
     price: 250000
@@ -524,7 +414,7 @@ items:
       mending: 1
 
   god_bow:
-    name: "&6&lGOD BOW"
+    name: '&6&lGOD BOW'
     material: BOW
     amount: 1
     price: 225000
@@ -537,7 +427,7 @@ items:
       unbreaking: 10
 
   god_trident:
-    name: "&b&lGOD TRIDENT"
+    name: '&b&lGOD TRIDENT'
     material: TRIDENT
     amount: 1
     price: 275000
@@ -554,7 +444,7 @@ items:
   # =========================
 
   god_helmet:
-    name: "&6&lGOD HELMET"
+    name: '&6&lGOD HELMET'
     material: NETHERITE_HELMET
     amount: 1
     price: 250000
@@ -568,7 +458,7 @@ items:
       mending: 1
 
   god_chestplate:
-    name: "&c&lGOD CHESTPLATE"
+    name: '&c&lGOD CHESTPLATE'
     material: NETHERITE_CHESTPLATE
     amount: 1
     price: 350000
@@ -580,7 +470,7 @@ items:
       mending: 1
 
   god_leggings:
-    name: "&5&lGOD LEGGINGS"
+    name: '&5&lGOD LEGGINGS'
     material: NETHERITE_LEGGINGS
     amount: 1
     price: 300000
@@ -592,7 +482,7 @@ items:
       mending: 1
 
   god_boots:
-    name: "&e&lGOD BOOTS"
+    name: '&e&lGOD BOOTS'
     material: NETHERITE_BOOTS
     amount: 1
     price: 275000
@@ -611,7 +501,7 @@ items:
   # =========================
 
   elytra:
-    name: "&dElytra"
+    name: '&dElytra'
     material: ELYTRA
     amount: 1
     price: 100000
@@ -621,7 +511,7 @@ items:
       mending: 1
 
   god_elytra:
-    name: "&d&lGOD ELYTRA"
+    name: '&d&lGOD ELYTRA'
     material: ELYTRA
     amount: 1
     price: 500000
@@ -635,25 +525,120 @@ items:
   # =========================
 
   dragon_head:
-    name: "&5Dragon Head"
+    name: '&5Dragon Head'
     material: DRAGON_HEAD
     amount: 1
     price: 50000
     category: endgame
 
   dragon_breath:
-    name: "&dDragon Breath"
+    name: '&dDragon Breath'
     material: DRAGON_BREATH
     amount: 16
     price: 15000
     category: endgame
 
   # =========================
+  # PICKLE
+  # =========================
+
+  pickle_sword:
+    name: '&2&lPICKLE SWORD'
+    material: NETHERITE_SWORD
+    amount: 1
+    price: 750000
+    category: endgame
+    enchants:
+      sharpness: 15
+      looting: 8
+      sweeping_edge: 8
+      fire_aspect: 3
+      unbreaking: 15
+      mending: 1
+
+  pickle_pickaxe:
+    name: '&a&lPICKLE PICKAXE'
+    material: NETHERITE_PICKAXE
+    amount: 1
+    price: 800000
+    category: endgame
+    enchants:
+      efficiency: 15
+      fortune: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_axe:
+    name: '&2&lPICKLE AXE'
+    material: NETHERITE_AXE
+    amount: 1
+    price: 700000
+    category: endgame
+    enchants:
+      efficiency: 15
+      sharpness: 12
+      unbreaking: 15
+      mending: 1
+
+  pickle_helmet:
+    name: '&2&lPICKLE HELMET'
+    material: NETHERITE_HELMET
+    amount: 1
+    price: 650000
+    category: endgame
+    enchants:
+      protection: 12
+      respiration: 5
+      aqua_affinity: 1
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_chestplate:
+    name: '&2&lPICKLE CHESTPLATE'
+    material: NETHERITE_CHESTPLATE
+    amount: 1
+    price: 900000
+    category: endgame
+    enchants:
+      protection: 12
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_leggings:
+    name: '&2&lPICKLE LEGGINGS'
+    material: NETHERITE_LEGGINGS
+    amount: 1
+    price: 800000
+    category: endgame
+    enchants:
+      protection: 12
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  pickle_boots:
+    name: '&2&lPICKLE BOOTS'
+    material: NETHERITE_BOOTS
+    amount: 1
+    price: 750000
+    category: endgame
+    enchants:
+      protection: 12
+      feather_falling: 10
+      depth_strider: 5
+      soul_speed: 5
+      thorns: 8
+      unbreaking: 15
+      mending: 1
+
+  # =========================
   # ULTIMATE
   # =========================
 
   ultimate_sword:
-    name: "&4&lULTIMATE SWORD"
+    name: '&4&lULTIMATE SWORD'
     material: NETHERITE_SWORD
     amount: 1
     price: 1000000
@@ -668,7 +653,7 @@ items:
       mending: 1
 
   ultimate_pickaxe:
-    name: "&b&lULTIMATE PICKAXE"
+    name: '&b&lULTIMATE PICKAXE'
     material: NETHERITE_PICKAXE
     amount: 1
     price: 1000000
@@ -680,7 +665,7 @@ items:
       mending: 1
 
   ultimate_elytra:
-    name: "&d&lULTIMATE ELYTRA"
+    name: '&d&lULTIMATE ELYTRA'
     material: ELYTRA
     amount: 1
     price: 1500000
@@ -690,7 +675,7 @@ items:
       mending: 1
 
   ultimate_axe:
-    name: "&5&lULTIMATE AXE"
+    name: '&5&lULTIMATE AXE'
     material: NETHERITE_AXE
     amount: 1
     price: 1200000
@@ -702,7 +687,7 @@ items:
       mending: 1
 
   ultimate_bow:
-    name: "&6&lULTIMATE BOW"
+    name: '&6&lULTIMATE BOW'
     material: BOW
     amount: 1
     price: 1100000
@@ -715,7 +700,7 @@ items:
       unbreaking: 20
 
   ultimate_trident:
-    name: "&b&lULTIMATE TRIDENT"
+    name: '&b&lULTIMATE TRIDENT'
     material: TRIDENT
     amount: 1
     price: 1300000
@@ -726,4 +711,18 @@ items:
       channeling: 1
       unbreaking: 20
       mending: 1
-```
+
+# =========================================================
+# SALDA BANKU
+# =========================================================
+# Tutaj zostaw swoje obecne salda.
+# Przyklad:
+#
+# balances:
+#   a2f6e431-fcfa-3b8c-ab22-61fc002ad0a5: 84229
+#
+# Jezeli masz juz te linie w swoim configu,
+# NIE USUWAJ ICH.
+
+balances:
+  a2f6e431-fcfa-3b8c-ab22-61fc002ad0a5: 84229
